@@ -227,7 +227,7 @@ $pagination->setAround($around);
                 <div class="push-center">
                     <nav class=" ink-navigation">
                         <ul class="pagination black">
-                            <?php $pagination->render(); ?>
+                            <?php echo $pagination->render(); ?>
                         </ul>
                     </nav>
                 </div>

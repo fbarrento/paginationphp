@@ -177,7 +177,7 @@ class Pagination {
             if(!array_key_exists($page+1, $pages) && $page+1 < end($pages)) $html.= ' <li><a href="#">...</a></li> ';
         }
 
-        echo $html;
+        return $html;
 
     }
 
