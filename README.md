@@ -3,7 +3,8 @@ A Pagination Class in PHP Version 1
 
 This is a example on how to write a simple pagination class in php.
 
-## Code Example
+Example
+-------
 
 Instantiation of the pagination
 
@@ -24,7 +25,7 @@ Render the pagination
 $pagination->render();
 
 DIRECTORY STRUCTURE
-___________________
+-------------------
 
 ```
 root /
@@ -40,14 +41,14 @@ root /
 ```
 
 DEMO
-____
+----
 
 A Demo is currently available under the following urls:
 
 <a href="http://demos.franciscobarrento.com/paginationphp">http://demos.franciscobarrento.com/paginationphp</a>
 
 FEEDBACK
-________
+--------
 
 Please send feedback and opinions to <a href="mailto:me@francisco.barrento.com">me@francisco.barrento.com</a>
 
