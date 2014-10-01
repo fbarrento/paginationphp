@@ -1,6 +1,6 @@
-## Synopsis
+## A Pagination Class in PHP Version 1
 
-A Pagination in PHP.
+This is a example on how to write a simple pagination class in php.
 
 ## Code Example
 
@@ -21,6 +21,26 @@ $pagination->setAround(3); //The number of links before and after the current pa
 Render the pagination
 
 $pagination->render();
+
+## DIRECTORY STRUCTURE
+
+root /
+|index.php
+|--- lib/
+     |--- includes.php
+     |--- config.php
+     |--- pagination.php
+|--- css/
+|--- fonts/
+|--- js/
+|--- img/
+
+## DEMO
+
+A Demo is currently available under the following urls:
+
+<a href="http://demos.franciscobarrento.com/paginationphp">http://demos.franciscobarrento.com/paginationphp</a>
+
 
 
 
