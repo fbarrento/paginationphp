@@ -6,4 +6,5 @@
  * Time: 15:36
  */
 include_once('configs.php');
+include_once('html.php');
 include_once('pagination.php');

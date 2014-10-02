@@ -1,58 +1,105 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: franciscobarrento
- * Date: 01/10/14
- * Time: 15:37
+ * Pagination class file
+ * 
+ * @author Francisco Barrento <me@francisco.barrento.com>
+ * @copyright 2014 Francisco Barrento
+ * @license http://opensource.org/licenses/GPL-3.0
  */
 
+/**
+ * Pagination represents information relevat to pagination
+ *
+ * When data need to be rendered in multiple pages we can use Pagination 
+ * represent information such as {@link getTotalPages total pages count}.
+ * These information can be passed to {@link render pagers} ro render
+ * pagination links.
+ *
+ * @since 1.0
+ *
+ * @todo  Comment the sets and gets for the itemTagName and itemHtmlOptions
+ *
+ * 
+ */
 class Pagination {
 
-    // Página actual
+    /**
+     * The current page
+     * @var integer
+     * Defaults to 1, meaning that if no current page is defined the fisrt page will be the active page 
+     */
     public $currentPage = 1;   //Por defeito iniciamos o site na primeira página
-
-    // Número Total de Páginas
+    /**
+     * The total number os pages to be sorted
+     * @var integer
+     */
     public  $totalPages;
-
-    // Quantas Páginas Queremos Linkar no ínicio e no Fim
-    public $boundaries;
-
-    // Quantas páginas queremos linkar antes e depois da página actual
+    /**
+     * The number of links in the begining and in the end of the pagination
+     * @var integer
+     */
+    public $boundaries; 
+    /**
+     * The number of links in the right and in the left of the current page
+     * @var integer
+     */
     public $around;
-
-    // Array para guardar as páginas a serem renderizadas
+    /**
+     * Array with the pages
+     * @var array 
+     */
     public $pages = [];
-
-    // Variável para guardar o HTML gerado
+    /**
+     * The HTML tag for the pagination items
+     * @var string
+     * Defaults to <li>;
+     */
+    public $itemTagName = '<li>';
+    /**
+     * The HTML item options
+     * @var array
+     */
+    public $itemHtmlOptions = ['class' => 'pagination-item'];
+    /**
+     * The page separator string when there's a gap in the pagination.
+     * @var string
+     * Defaults to ...
+     */
+    public $separator = '...';
+    /**
+     * The html
+     * @var string
+     */
     private $_html;
+    
 
 
-    /*
-     * Definir o valor da página actual
+    /**
+     * @param integer $currentPage the index of the current page.
      */
     public function setCurrentPage($currentPage)
     {
       $this->currentPage = $currentPage;
     }
 
-    /*
-     * Devolve o valor da página actual
+    /**
+     * @return integer the index of the current page.
      */
     public function getCurrentPage()
     {
        return $this->currentPage;
     }
 
-    /*
-     * Definir o valor do número total de páginas
+    /**
+     * @param integer $totalPages total number of pages.
      */
     public function setTotalPages($totalPages)
     {
         $this->totalPages = $totalPages;
     }
 
-    /*
-     * Devolve o número de páginas totais ou devolve falso se não estiver definido
+    /**
+     * @return integer the number of pages.
      */
     public function getTotalPages()
     {
@@ -60,16 +107,16 @@ class Pagination {
         return false;
     }
 
-    /*
-     * Define o número de paginas a renderizar no início e no fim
+    /**
+     * @param integer $boundaries number of pages in the begining and in the end of the pagination including the first and the last.
      */
     public function setBoundaries($boundaries)
     {
         $this->boundaries = $boundaries;
     }
 
-    /*
-     * Devolve o número de páginas a renderizar no início e no fim
+    /**
+     * @return integer the number of pages at the begining and in the end of the pagination.
      */
     public function getBoundaries()
     {
@@ -77,24 +124,67 @@ class Pagination {
         return false;
     }
 
-    /*
-     * Define o número de páginas a renderizar antes e depois da página currente
+    /**
+     * @param integer $around number of pages before and after the current page.
      */
     public function setAround($around)
     {
         $this->around = $around;
     }
 
-    /*
-     * Devolve o número de páginas a renderizar antes e depois da página currente
+    /**
+     * @param integer number of pages before and after the current page.
      */
     public function getAround()
     {
         if($this->around) return $this->around;
+        return false;
     }
 
-    /*
-     * Guarda no array as páginas a serem renderizadas antes e depois da página currente e a página currente
+    /**
+     * @param string $sepator string to separate the gaps in the pagination
+     */
+    public function setSeparator($sepator)
+    {
+      $this->separator = $sepator;
+    }
+
+    /**
+     * @param string to separate the gaps in the pagination
+     */
+    public function getSeparator()
+    {
+      if($this->separator) return $this->separator;
+      return false;
+    }
+
+    public function setItemTagName($itemTagName)
+    {
+      $this->itemTagName = $itemTagName;
+    }
+
+    public function getItemTagName()
+    {
+      if($this->itemTagName) return $this->itemTagName;
+      return false;
+    }
+
+    public function setItemHtmlOptions($htmlOptions = [])
+    {
+      $this->itemHtmlOptions = $htmlOptions;
+    }
+
+    public function getItemHtmlOptions()
+    {
+      if($this->itemHtmlOptions) return $this->itemHtmlOptions;
+      return false;
+    }
+
+
+
+    /**
+     * Populate the pages array with the pages before and after the current page
+     * Populate the pages array with the current page
      */
     private function setAroundPages()
     {
@@ -108,17 +198,14 @@ class Pagination {
             $end = $current + $this->around;
         }
 
-        
-
         for($i = $begin; $i <= $end; $i++){
             $this->pages[$i] = $i;
-
         }
 
     }
 
-    /*
-     * Guarda no array as páginas a serem renderizadas no inicício o no fim
+    /**
+     * Populate the pages array with the pages in the beginig and in the end of the pagination.
      */
     private function setBoundariesPages()
     {
@@ -136,48 +223,71 @@ class Pagination {
         }
     }
 
-    /*
-     * Devolve o array com as páginas
-     */
-    private function getPages()
+    private static function createUrl($parameters = [])
     {
-        self::setBoundariesPages();
-        self::setAroundPages();
-        asort($this->pages);
+
+      //We have to get the page
+      $url = 'index.php?';
+      foreach ($parameters as $key => $value) {
+        $url .= $key .'=' . $value .'&';
+      }
+      return $url;
+
     }
 
-    /*
-     * Gera os Links para a paginação
+    /**
+     * Creates the link to a particular page
+     * @param  [type] $page [description]
+     * @return string       the html of a pagination link
      */
-    private function createlink($page)
+    private function createPaginationItem($page)
     {
-        $linkPage = $page;
-        $totalPages = $this->totalPages;
-        $boundaries = $this->boundaries;
-        $around = $this->around;
+        $parameters = [
+                        'p' => $page,
+                        'tp' => $this->totalPages,
+                        'b' => $this->boundaries,
+                        'a' => $this->around
+        ];
 
-        $class='';
-        if($page==$this->currentPage) $class=' class="active" ';
-        
+        if($page==$this->currentPage) 
+        $this->itemHtmlOptions['class'] .= ' active ';
+          else  $this->itemHtmlOptions['class'] = str_replace(' active ', '', $this->itemHtmlOptions['class']);
 
-        return '<li '.$class.'><a href="index.php?p='.$linkPage.'&tp='.$totalPages.'&b='.$boundaries.'&a='.$around.'">'.$linkPage.'</a> </li>';
+        $paginationItem = '';
+        $paginationItem .= html::openTag(html::removeBrackets($this->itemTagName), $this->itemHtmlOptions );
+        $paginationItem .=  html::link($page, self::createUrl($parameters));
+        $paginationItem .= html::closeTag(html::removeBrackets($this->itemTagName));
+
+        return  $paginationItem;
     }
 
-    /*
-     * Rederiza a paginação
+    /**
+     * Generates the html for the pagination 
+     * @return string the html of the <li> elements to include in the pagination
      */
     public function render()
     {
-        self::getPages();
-        $html = '';
-        $pages = $this->pages;
-        foreach($pages as $page){
-            if($page >= 1 && $page <= end($pages))
-            $html.= self::createlink($page);
-            if(!array_key_exists($page+1, $pages) && $page+1 < end($pages)) $html.= ' <li><a href="#">...</a></li> ';
-        }
+        
+        $pagination = '';
+        self::setBoundariesPages();
+        self::setAroundPages();
+        asort($this->pages);
+        
+        $pagination = html::openTag('nav', ['class'=>'ink-navigation']);
+        $pagination .= html::openTag('ul', ['class'=>'pagination black']);
 
-        return $html;
+        foreach($this->pages as $page){
+            if($page >= 1 && $page <= end($this->pages))
+                $pagination.= self::createPaginationItem($page);
+            if(!array_key_exists($page+1, $this->pages) && $page+1 < end($this->pages)) {
+                $pagination .= html::openTag(html::removeBrackets($this->itemTagName), $this->itemHtmlOptions );
+                $pagination .=  html::link($this->separator);
+                $pagination .= html::closeTag(html::removeBrackets($this->itemTagName));
+            }
+        }
+        $pagination .= html::closeTag('ul');
+        $pagination .= html::closeTag('nav');
+        return $pagination;
 
     }
 

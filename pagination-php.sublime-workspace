@@ -1,0 +1,415 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ex",
+				"extend	@extend"
+			],
+			[
+				"inclu",
+				"include	@include"
+			],
+			[
+				"in",
+				"include	@include"
+			],
+			[
+				"tota",
+				"totalPages"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"au",
+				"around"
+			],
+			[
+				"to",
+				"total_pages"
+			],
+			[
+				"current",
+				"currentPage"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fo",
+				"format"
+			],
+			[
+				"r",
+				"routeParams"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"st",
+				"strong	Tag"
+			],
+			[
+				"sess",
+				"session_destroy"
+			],
+			[
+				"form",
+				"formID"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"add",
+				"add_ninja_forms_import_submited_values"
+			],
+			[
+				"nin",
+				"ninja_forms_import_submited_values"
+			],
+			[
+				"next",
+				"next_text"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<?php\nnamespace backend\\controllers;\n\nuse Yii;\nuse app\\models\\User;\nuse app\\models\\UserSearch;\nuse yii\\web\\Controller;\nuse yii\\web\\NotFoundHttpException;\nuse yii\\filters\\VerbFilter;\n\n/**\n * UserController implements the CRUD actions for User model.\n */\nclass UserController extends Controller\n{\n    \n    public $template;\n\n    public function behaviors()∏\n    {\n        return [\n            'verbs' => [\n                'class' => VerbFilter::className(),\n                'actions' => [\n                    'delete' => ['post'],\n                ],\n            ],\n        ];\n\n    }\n\n\n    /**\n     * Lists all User models.\n     * @return mixed\n     */\n    public function actionIndex()\n    {\n        $searchModel = new UserSearch();\n        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);\n\n        return $this->render('index', [\n            'searchModel' => $searchModel,\n            'dataProvider' => $dataProvider,\n        ]);\n    }\n\n    /**\n     * Displays a single User model.\n     * @param integer $id\n     * @return mixed\n     */\n    public function actionView($id)\n    {\n        return $this->render('view', [\n            'model' => $this->findModel($id),\n        ]);\n    }\n\n    /**\n     * Creates a new User model.\n     * If creation is successful, the browser will be redirected to the 'view' page.\n     * @return mixed\n     */\n    public function actionCreate()\n    {\n        $model = new User();\n\n        if ($model->load(Yii::$app->request->post()) && $model->save()) {\n            return $this->redirect(['view', 'id' => $model->id]);\n        } else {\n            return $this->render('create', [\n                'model' => $model,\n            ]);\n        }\n    }\n\n    /**\n     * Updates an existing User model.\n     * If update is successful, the browser will be redirected to the 'view' page.\n     * @param integer $id\n     * @return mixed\n     */\n    public function actionUpdate($id)\n    {\n        $model = $this->findModel($id);\n\n        if ($model->load(Yii::$app->request->post()) && $model->save()) {\n            return $this->redirect(['view', 'id' => $model->id]);\n        } else {\n            return $this->render('update', [\n                'model' => $model,\n            ]);\n        }\n    }\n\n    /**\n     * Deletes an existing User model.\n     * If deletion is successful, the browser will be redirected to the 'index' page.\n     * @param integer $id\n     * @return mixed\n     */\n    public function actionDelete($id)\n    {\n        $this->findModel($id)->delete();\n\n        return $this->redirect(['index']);\n    }\n\n    /**\n     * Finds the User model based on its primary key value.\n     * If the model is not found, a 404 HTTP exception will be thrown.\n     * @param integer $id\n     * @return User the loaded model\n     * @throws NotFoundHttpException if the model cannot be found\n     */\n    protected function findModel($id)\n    {\n        if (($model = User::findOne($id)) !== null) {\n            return $model;\n        } else {\n            throw new NotFoundHttpException('The requested page does not exist.');\n        }\n    }\n    \n    public function findFrancisco($name, $age, $city)\n    {\n\n        $francisco = new stdClass();\n        $auth = Yii::app()->authManager;\n        return $francisco;\n\n    }\n\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"file": "/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/controllers/UserController.php",
+			"file_size": 3250,
+			"file_write_time": 1412243987000000,
+			"settings":
+			{
+				"buffer_size": 3288,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Compass/Compass.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/yii",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/yii2-cms.sublime-project",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/admin-css-framework.sublime-project",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/sass/base/_base.scss",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/partials/about.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/css/application.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/.sassbuilder-config.json",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/untitled.sublime-project",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/partials/user",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/js/app.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/partials/user/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/partials/user/view.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/js/services.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/js/filters.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/js/controllers.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/assets/AppAsset.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/partials/shots_list.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/partials/shot.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/web/css/app.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/iabe/frontend/web/.htaccess.php"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"body",
+			"mp_next",
+			"ninja_forms_form_2_mp_next",
+			"next",
+			"virtual",
+			"erro"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Applications/XAMPP/xamppfiles/htdocs/kateira/cms/backend/controllers/UserController.php",
+					"settings":
+					{
+						"buffer_size": 3288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3083,
+								3083
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1684.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Applications/XAMPP/xamppfiles/htdocs/kateira/admin/admin-css-framework.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true
+}
