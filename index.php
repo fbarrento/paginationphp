@@ -225,11 +225,7 @@ $pagination->setAround($around);
             </section>
             <section class="column-group" style="padding-bottom: 30px;">
                 <div class="push-center">
-                    <nav class=" ink-navigation">
-                        <ul class="pagination black">
                             <?php echo $pagination->render(); ?>
-                        </ul>
-                    </nav>
                 </div>
             </section>
         </div>
