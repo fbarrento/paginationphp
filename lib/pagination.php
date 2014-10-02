@@ -8,7 +8,7 @@
  */
 
 /**
- * Pagination represents information relevat to pagination
+ * Pagination represents information relevant to pagination
  *
  * When data need to be rendered in multiple pages we can use Pagination 
  * represent information such as {@link getTotalPages total pages count}.
@@ -71,7 +71,6 @@ class Pagination {
      * @var string
      */
     private $_html;
-    
 
 
     /**
@@ -188,17 +187,13 @@ class Pagination {
      */
     private function setAroundPages()
     {
-        $current = $this->currentPage;
 
-        $begin = $current - $this->around;
-
-        if(($current + $this->around) > $this->totalPages) {
+        if(($this->currentPage + $this->around) > $this->totalPages) {
             $end = $this->totalPages;
         } else {
-            $end = $current + $this->around;
+            $end = $this->currentPage + $this->around;
         }
-
-        for($i = $begin; $i <= $end; $i++){
+        for($i = ($this->currentPage - $this->around); $i <= $end; $i++){
             $this->pages[$i] = $i;
         }
 
@@ -209,16 +204,12 @@ class Pagination {
      */
     private function setBoundariesPages()
     {
-        $last = $this->totalPages;
-        $lastBoundary = $last - $this->boundaries + 1;
-        $first = 1;
-        $firstBoundary = $this->boundaries;
 
-        for($i= $lastBoundary; $i <= $last; $i++) {
+        for($i = ($this->totalPages - $this->boundaries + 1); $i <= $this->totalPages; $i++) {
             $this->pages[$i] = $i;
         }
 
-        for($i= $first; $i <= $firstBoundary; $i++) {
+        for($i = 1; $i <= $this->boundaries; $i++) {
             $this->pages[$i] = $i;
         }
     }

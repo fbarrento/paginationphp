@@ -30,29 +30,29 @@ if($_POST) {
     }
 } else if($_GET) {
 
-	if(isset($_GET['p'])) {                 
-		$current_page = $_GET['p'];         
-	} else {                                
-		$current_page = 1;                  
+	if(isset($_GET['p'])) {
+		$current_page = $_GET['p'];
+	} else { 
+		$current_page = 1;
 	}
 
-    if(isset($_GET['tp'])) {                
-        $total_pages = $_GET['tp'];         
-    } else {                                
-        $total_pages = 10;                  
-    }                                       
-                                              
-    if(isset($_GET['b'])) {                 
-        $boundaries = $_GET['b'];           
-    } else {                                
-        $boundaries = 2;                    
-    }                                       
-                   
-    if(isset($_GET['a'])) {                 
-        $around = $_GET['a'];               
-    } else {                                
-        $around = 1;                        
-    }                                       
+    if(isset($_GET['tp'])) {
+        $total_pages = $_GET['tp'];
+    } else {
+        $total_pages = 10;
+    }
+
+    if(isset($_GET['b'])) {
+        $boundaries = $_GET['b'];
+    } else {
+        $boundaries = 2;
+    }
+
+    if(isset($_GET['a'])) {
+        $around = $_GET['a'];
+    } else {
+        $around = 1;
+    }
 }   else {
 
     // Definir valores por defeito de acordo com os requisitos do exercício
